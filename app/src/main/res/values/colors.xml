@@ -7,4 +7,5 @@
     <color name="name_color">#ffffff</color>
     <color name="message_black">#D5000000</color>
     <color name="message_gray">#8A000000</color>
+    <color name="cut_line">#1E000000</color>
 </resources>
