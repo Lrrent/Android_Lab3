@@ -70,7 +70,7 @@ public class AddressList extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(AddressList.this);
-                alertDialog.setTitle("删除联系人").setMessage("确定删除联系人"+name[position]+"?").setPositiveButton("确认",
+                alertDialog.setTitle("删除联系人").setMessage("确定删除联系人"+data.get(position).get("name").toString()+"?").setPositiveButton("确认",
                         new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
