@@ -13,11 +13,12 @@
        android:layout_weight="3"
         android:id="@+id/header"
        android:background="#20A17B">
-        <ImageButton
+        <!--一开始用ImageButton,但在header的背景色改变的时候也要改变ImageButton的背景色，
+        然而在java文件中调用setBackground(Drawable drawable)的时候视乎只能是设置最后一个控件的背景色-->
+        <ImageView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:id="@+id/back"
-           android:background="#20A17B"
            android:src="@drawable/back"
             android:paddingLeft="@dimen/padding_border"/>
         <!-- 如果在textview控件中加入这句android:layout_below="@id/back"，
@@ -37,7 +38,6 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:id="@+id/star"
-           android:background="#20A17B"
            android:src="@drawable/empty_star"
            android:layout_alignTop="@id/name_message"
            android:layout_alignParentRight="true"
@@ -70,13 +70,26 @@
                     android:text="12321321"
                     android:textColor="@color/message_black"
                     android:textSize="@dimen/details_size" />
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/location"
-                    android:textColor="@color/message_gray"
-                    android:text="123421434"
-                    android:textSize="@dimen/details_size"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/type"
+                        android:textColor="@color/message_gray"
+                        android:text="123"
+                        android:textSize="@dimen/details_size"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/location"
+                        android:textColor="@color/message_gray"
+                        android:text="1"
+                        android:textSize="@dimen/details_size"
+                        android:paddingLeft="@dimen/padding_border"/>
+                </LinearLayout>
             </LinearLayout>
             <View
                 android:layout_width="5px"

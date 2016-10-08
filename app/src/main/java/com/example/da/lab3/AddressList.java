@@ -30,7 +30,7 @@ public class AddressList extends AppCompatActivity {
         //SimpleaAdapter
         final List<Map<String,Object>> data = new ArrayList<>();
         final String[] name = new  String[] {"Aaron","Elvis","David","Edwin","Frank",
-                "Joshua","Ivan","Mark","Joseph","phoebe"};
+                "Joshua","Ivan","Mark","Joseph","Phoebe"};
         final String[] phone = {"17715523654","18825653224","15052116654","18854211875 "
         ,"13955188541","13621574410","15684122771","17765213579","13315466578","17895466428"};
         final String[] type = {"手机","手机","手机","手机","手机","手机","手机","手机","手机","手机"};
@@ -41,6 +41,9 @@ public class AddressList extends AppCompatActivity {
             Map<String,Object> temp = new LinkedHashMap<>();
             temp.put("name_first",name[i].substring(0,1));
             temp.put("name",name[i]);
+            temp.put("phone",phone[i]);
+            temp.put("type",type[i]);
+            temp.put("location",location[i]);
             data.add(temp);
         }
         final SimpleAdapter adapter = new SimpleAdapter(this,data,R.layout.address_item,
@@ -52,8 +55,11 @@ public class AddressList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(AddressList.this,Message.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("name",name[position]);
-                bundle.putString("phone_number",phone[position]);
+                /*最初直接使用name[position],type[position]这种方式将数据放入bundle，导致删除数据时不一致*/
+                bundle.putString("name",data.get(position).get("name").toString());
+                bundle.putString("phone_number",data.get(position).get("phone").toString());
+                bundle.putString("type",data.get(position).get("type").toString());
+                bundle.putString("location",data.get(position).get("location").toString());
                 intent.putExtras(bundle);
                 AddressList.this.startActivity(intent);
             }
@@ -76,14 +82,6 @@ public class AddressList extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //暂时先点击取消就会回复原状
-                        for(int i = 0;i<name.length;i++)
-                        {
-                            Map<String,Object> temp = new LinkedHashMap<>();
-                            temp.put("name_first",name[i].substring(0,1));
-                            temp.put("name",name[i]);
-                            data.add(temp);
-                        }
-                        adapter.notifyDataSetChanged();
                     }
                 }).show();
                 return true;

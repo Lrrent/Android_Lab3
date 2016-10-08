@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Lab3</string>
+    <drawable name="Aaron">#BB4C3B</drawable>
+    <drawable name="Elvis">#c48d30</drawable>
+    <drawable name="David">#4469b0</drawable>
+    <drawable name="Edwin">#20A17B</drawable>
+    <drawable name="Frank">#BB4C3B</drawable>
+    <drawable name="Joshua">#c48d30</drawable>
+    <drawable name="Ivan">#4469b0</drawable>
+    <drawable name="Mark">#20A17B</drawable>
+    <drawable name="Joseph">#BB4C3B</drawable>
+    <drawable name="Phoebe">#c48d30</drawable>
 </resources>
