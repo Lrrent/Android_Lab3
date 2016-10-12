@@ -8,18 +8,18 @@
     <!-- 将layout_height设置为0dp
     可以避免已经设定的layout占的比例虽里面的控件变化-->
     <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
         android:id="@+id/header"
-       android:background="#20A17B">
+        android:background="#20A17B">
         <!--一开始用ImageButton,但在header的背景色改变的时候也要改变ImageButton的背景色，
         然而在java文件中调用setBackground(Drawable drawable)的时候视乎只能是设置最后一个控件的背景色-->
         <ImageView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/back"
-           android:src="@drawable/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/back"
+            android:src="@drawable/back"
             android:paddingLeft="@dimen/padding_border"/>
         <!-- 如果在textview控件中加入这句android:layout_below="@id/back"，
         则textview的区域会从back那里一直到layout_bottom-->
@@ -27,25 +27,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/name_message"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
             android:paddingLeft="@dimen/padding_border"
             android:paddingBottom="@dimen/padding_border"
             android:textSize="25sp"
             android:textColor="@color/name_color"
             android:text="sdsa"/>
-       <ImageView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/star"
-           android:src="@drawable/empty_star"
-           android:layout_alignTop="@id/name_message"
-           android:layout_alignParentRight="true"
-           android:layout_alignParentBottom="true"
-           android:paddingRight="@dimen/padding_border"
-           android:paddingBottom="@dimen/padding_border"
-          />
-   </RelativeLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/star"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/empty_star"
+            android:paddingRight="@dimen/padding_border"
+            android:paddingBottom="@dimen/padding_border"
+            />
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -88,28 +87,31 @@
                         android:paddingLeft="@dimen/padding_border"/>
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="5"
-                android:orientation="horizontal"
-                android:layout_gravity="center"
                 >
-                <RelativeLayout
-                    android:layout_height="match_parent"
-                    style="@style/vertical_line"
-                    android:layout_marginRight="@dimen/padding_border"
-                    />
                 <ImageButton
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/chat"
-                    android:layout_gravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
                     android:background="@drawable/chat"
                     />
-            </LinearLayout>
+                <ImageView
+                    style="@style/vertical_line"
+                    android:layout_marginRight="@dimen/padding_border"
+                    android:layout_centerVertical="true"
+                    android:layout_alignTop="@id/chat"
+                    android:layout_alignBottom="@id/chat"
+                    />
+            </RelativeLayout>
         </LinearLayout>
-        <LinearLayout style="@style/horizontal_line" />
+        <ImageView style="@style/horizontal_line"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -130,10 +132,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4">
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/operation">
-    </ListView>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/operation">
+        </ListView>
     </LinearLayout>
 </LinearLayout>

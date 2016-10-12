@@ -28,7 +28,6 @@ public class AddressList extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.support_simple_spinner_dropdown_item,address);*/
         //SimpleaAdapter
-        final List<Map<String,Object>> data = new ArrayList<>();
         final String[] name = new  String[] {"Aaron","Elvis","David","Edwin","Frank",
                 "Joshua","Ivan","Mark","Joseph","Phoebe"};
         final String[] phone = {"17715523654","18825653224","15052116654","18854211875 "
@@ -36,7 +35,10 @@ public class AddressList extends AppCompatActivity {
         final String[] type = {"手机","手机","手机","手机","手机","手机","手机","手机","手机","手机"};
         final String[] location ={"江苏苏州电信","广东揭阳移动","江苏无锡移动","山东青岛移动",
         "安徽合肥移动 ","江苏苏州移动","山东烟台联通","广东珠海电信","河北石家庄电信","山东东营移动"};
-        for(int i = 0;i<name.length;i++)
+        String[] color = {"BB4C3B","c48d30","4469b0","20A17B","BB4C3B","c48d30","4469b0","20A17B",
+                    "BB4C3B","c48d30"};
+        final List<Map<String,Object>> data = new ArrayList<>(); //data用于存储联系人的一系列数据
+        for(int i = 0;i<name.length;i++)  //将数组中的元素放入到data中
         {
             Map<String,Object> temp = new LinkedHashMap<>();
             temp.put("name_first",name[i].substring(0,1));
@@ -44,6 +46,7 @@ public class AddressList extends AppCompatActivity {
             temp.put("phone",phone[i]);
             temp.put("type",type[i]);
             temp.put("location",location[i]);
+            temp.put("color",color[i]);
             data.add(temp);
         }
         final SimpleAdapter adapter = new SimpleAdapter(this,data,R.layout.address_item,
@@ -60,28 +63,26 @@ public class AddressList extends AppCompatActivity {
                 bundle.putString("phone_number",data.get(position).get("phone").toString());
                 bundle.putString("type",data.get(position).get("type").toString());
                 bundle.putString("location",data.get(position).get("location").toString());
+                bundle.putString("color",data.get(position).get("color").toString());
                 intent.putExtras(bundle);
-                AddressList.this.startActivity(intent);
+                AddressList.this.startActivity(intent);   //跳转到详情界面的Activity
             }
         });
         //长按
         address_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-
                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(AddressList.this);
-                alertDialog.setTitle("删除联系人").setMessage("确定删除联系人"+data.get(position).get("name").toString()+"?").setPositiveButton("确认",
-                        new DialogInterface.OnClickListener() {
+                alertDialog.setTitle("删除联系人").setMessage("确定删除联系人"+data.get(position).get("name").toString()+"?")
+                        .setPositiveButton("确认",new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        data.remove(position);
-                        adapter.notifyDataSetChanged();
-
+                        data.remove(position); //删除被选中的列表项
+                        adapter.notifyDataSetChanged();   //更新适配器
                     }
                 }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //暂时先点击取消就会回复原状
+                    public void onClick(DialogInterface dialog, int which) {//暂时先点击取消就会回复原状
                     }
                 }).show();
                 return true;

@@ -1,10 +1,8 @@
 package com.example.da.lab3;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -40,8 +38,13 @@ public class Message extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //跳转的时候如果新建一个intent,然后再startActivity的话并不能达到完全退出activity的效果;等多次之后会一个叠一个，手机内存占用越来越多，而采用finish会
+                //销毁当前activity，然后跳转回上一个activity
+                /*
                 Intent intent = new Intent(Message.this,AddressList.class); //显式调用
                 Message.this.startActivity(intent);
+               */
+                Message.this.finish();
             }
         });
         //星星图标的切换
@@ -66,10 +69,16 @@ public class Message extends AppCompatActivity {
         operation.setAdapter(adapter);
         //接收从AddressList.java中数据并对相应控件的取值进行处理
         Bundle bundle = this.getIntent().getExtras();
+        Contacts_name person = (Contacts_name) bundle.getSerializable("person");
+        String name = person.getName();
+        String phone = person.getPhone_number();
+        String type_receive = person.getType();
+        String location_receive = person.getLocation();
+        /*
         String name = bundle.getString("name");
         String phone = bundle.getString("phone_number");
         String type_receive = bundle.getString("type");
-        String location_receive = bundle.getString("location");
+        String location_receive = bundle.getString("location");*/
         name_message.setText(name);
         phone_number.setText(phone);
         type.setText(type_receive);
@@ -77,9 +86,9 @@ public class Message extends AppCompatActivity {
         /*由于一开始将AddressList.java中name数组的Phoebe写成phoebe,和drawable中的Phoebe不一样，
         导致点击Phoebe时找不到背景颜色，出来下面的错误：
         android.content.res.Resources$NotFoundException: Resource ID #0x0*/
-        int color_id= getResources().getIdentifier(name, "drawable", "com.example.da.lab3");
-        Log.i("message", color_id+"");
+        /*int color_id= getResources().getIdentifier(name, "drawable", "com.example.da.lab3");
         Drawable drawable = getResources().getDrawable(color_id);
-        header.setBackground(drawable);
+        header.setBackground(drawable);*/
+        header.setBackgroundColor(Color.parseColor("#"+person.getColor()));
     }
 }
