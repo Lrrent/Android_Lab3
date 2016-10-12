@@ -65,7 +65,8 @@ public class Message extends AppCompatActivity {
         more_details.setText("更多资料");
         /*尾部的ListView适配器*/
         String []operations = {"编辑联系人","分享联系人","加入黑名单","删除联系人"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,operations);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                                       R.layout.support_simple_spinner_dropdown_item,operations);
         operation.setAdapter(adapter);
         //接收从AddressList.java中数据并对相应控件的取值进行处理
         Bundle bundle = this.getIntent().getExtras();
@@ -89,6 +90,6 @@ public class Message extends AppCompatActivity {
         /*int color_id= getResources().getIdentifier(name, "drawable", "com.example.da.lab3");
         Drawable drawable = getResources().getDrawable(color_id);
         header.setBackground(drawable);*/
-        header.setBackgroundColor(Color.parseColor("#"+person.getColor()));
+         header.setBackgroundColor(Color.parseColor("#"+person.getColor()));
     }
 }
